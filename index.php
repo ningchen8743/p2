@@ -17,16 +17,40 @@ require('logic.php');
 
 <p>Word counter is a small app that calculates the number of words/characters for your input.</p>
 
-<form method='POST' action='search.php'>
-    <label>Write down sentences as your input
-        <input type='text' name='searchTerm' value='<?php if (isset($searchTerm)) echo $searchTerm ?>'>
-    </label>
-    <br>
-    <label>
-        <input type='checkbox' name='countSpace' value='<?php if(isset($countSpace)) echo 'checked'?>' >
-        Count space
-    </label>
-    <br>
+<form method='POST' action='index.php' id='word_count'>
+    <fieldset>
+        <label>Write down sentences (do not enter line break!)</label>
+        <br>
+        <textarea form='word_count' name='textarea'></textarea>
+    </fieldset>
+
+    <br><br>
+
+    <fieldset>
+        <input type='checkbox' name='countSpace'>
+        <label>Count space character?</label>
+    </fieldset>
+
+    <br><br>
+
+    <fieldset>
+        <label>Count by character or word</label>
+        <select name='wordOrChar' form='word_count'>
+            <option value='character'>Character</option>
+            <option value='word'>Word</option>
+        </select>
+    </fieldset>
+
+    <br><br>
+
+    <fieldset>
+        <label>Result</label>
+        <br>
+        <output><?php echo countTotal(); ?></output>
+    </fieldset>
+
+    <br><br>
+
     <input type='submit' value='Count!'>
 </form>
 
