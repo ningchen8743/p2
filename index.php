@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 require('helpers.php');
 require('logic.php');
 ?>
@@ -21,7 +23,7 @@ require('logic.php');
     <fieldset>
         <label>Write down sentences (do not enter line break!)</label>
         <br>
-        <textarea form='word_count' name='textarea'></textarea>
+        <textarea form='word_count' name='textarea' rows=5><?php echo GetTextAreaCache(); ?></textarea>
     </fieldset>
 
     <br><br>
@@ -46,7 +48,7 @@ require('logic.php');
     <fieldset>
         <label>Result</label>
         <br>
-        <output><?php echo countTotal(); ?></output>
+        <output><?php echo $result; ?></output>
     </fieldset>
 
     <br><br>
@@ -56,3 +58,7 @@ require('logic.php');
 
 </body>
 </html>
+
+<?php
+    session_unset();
+?>

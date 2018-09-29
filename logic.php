@@ -1,50 +1,23 @@
 <?php
-// session_start();
+require 'WordProcessor.php';
 
-function countTotal(){
-    $countResult = 0;
+$result = 0;
 
-    // string
-    $text = $_POST["textarea"];
+if(empty($_POST)) {
+    $result = 0;
+} else {
+    $wordProcessor = new \Basic\WordProcessor($_POST);
+    $result = $wordProcessor->CountTotal();
 
-    // boolean
-    $countSpace = isset($_POST["countSpace"]);
-
-    // string
-    $wordOrChar = $_POST["wordOrChar"];
-
-    // perform calculation
-    $charArray = str_split($text);
-    $charCount = count($charArray);
-    $spaceCount = 0;
-    foreach ($charArray as $char) {
-        if($char == ' ') {
-            ++$spaceCount;
-        }
-    }
-
-    $wordArray = explode(" ", $text);
-    $wordCount = count($wordArray);
-
-    // get result
-    if($countSpace) {
-        if($wordOrChar == 'word') {
-            $countResult = $wordCount + $spaceCount;
-        } else {
-            $countResult = $charCount;
-        }
-    } else {
-        if($wordOrChar == 'word') {
-            $countResult = $wordCount;
-        } else {
-            $countResult = $charCount - $spaceCount;
-        }
-    }
-    return $countResult;
+    $_SESSION['textarea_cache'] = $wordProcessor->text;
+    $_SESSION['countSpace_cache'] = $wordProcessor->countSpace;
+    $_SESSION['wordOrChar_cache'] = $wordProcessor->wordOrChar;
 }
 
-/*$results = $_SESSION['results'];
-$wordCount = $results['wordCount'];
-$countSpace = $results['countSpace'];*/
-
-// session_unset();
+function GetTextAreaCache() {
+    if(array_key_exists('textarea_cache', $_SESSION)) {
+        return $_SESSION['textarea_cache'];
+    } else {
+        return '';
+    }
+}

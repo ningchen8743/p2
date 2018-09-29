@@ -2,11 +2,11 @@
 session_start();
 require 'helpers.php';
 
-$wordCount = $_POST['wordCount'];
+$text = $_POST['textarea'];
 
 
 $_SESSION['results'] = [
-
+    'textarea'=> $text,
 ];
 
 header('location:index.php');
