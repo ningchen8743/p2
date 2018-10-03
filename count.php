@@ -1,12 +1,30 @@
 <?php
+
+require 'WordProcessor.php';
+require 'Form.php';
+
+use Basic\WordProcessor;
+use DWA\Form;
+
 session_start();
-require 'helpers.php';
 
-$text = $_POST['textarea'];
+$wordProcessor = new WordProcessor($_POST);
+$form = new Form($_POST);
 
+$arg = ['textarea' => 'required'];
+$errors = $form->validate($arg);
 
-$_SESSION['results'] = [
-    'textarea'=> $text,
+$countResult = 0;
+if(!$form->hasErrors) {
+	$countResult = $wordProcessor->CountTotal();
+}
+
+$_SESSION['result_cache'] = [
+	'textarea_cache'   => $wordProcessor->text,
+	'countSpace_cache' => $wordProcessor->countSpace,
+	'wordOrChar_cache' => $wordProcessor->wordOrChar,
+	'countResult_cache'=> $countResult,
+	'errors_cache'     => $errors,
 ];
 
-header('location:index.php');
+header('Location: index.php');

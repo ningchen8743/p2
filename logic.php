@@ -1,23 +1,16 @@
 <?php
-require 'WordProcessor.php';
 
-$result = 0;
+session_start();
 
-if(empty($_POST)) {
-    $result = 0;
-} else {
-    $wordProcessor = new \Basic\WordProcessor($_POST);
-    $result = $wordProcessor->CountTotal();
-
-    $_SESSION['textarea_cache'] = $wordProcessor->text;
-    $_SESSION['countSpace_cache'] = $wordProcessor->countSpace;
-    $_SESSION['wordOrChar_cache'] = $wordProcessor->wordOrChar;
+if(isset($_SESSION['result_cache'])) {
+	$temp = $_SESSION['result_cache'];
+	
+	$textarea_cache    = $temp['textarea_cache'   ];
+	$countSpace_cache  = $temp['countSpace_cache' ];
+	$wordOrChar_cache  = $temp['wordOrChar_cache' ];
+	$countResult_cache = $temp['countResult_cache'];
+	$errors_cache      = $temp['errors_cache'  ];	
 }
 
-function GetTextAreaCache() {
-    if(array_key_exists('textarea_cache', $_SESSION)) {
-        return $_SESSION['textarea_cache'];
-    } else {
-        return '';
-    }
-}
+session_unset();
+

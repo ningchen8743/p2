@@ -1,8 +1,6 @@
 <?php
-session_start();
-
-require('helpers.php');
-require('logic.php');
+require 'helpers.php';
+require 'logic.php';
 ?>
 
 <!DOCTYPE html>
@@ -19,17 +17,17 @@ require('logic.php');
 
 <p>Word counter is a small app that calculates the number of words/characters for your input.</p>
 
-<form method='POST' action='index.php' id='word_count'>
+<form method='POST' action='count.php' id='word_count'>
     <fieldset>
         <label>Write down sentences (do not enter line break!)</label>
         <br>
-        <textarea form='word_count' name='textarea' rows=5><?php echo GetTextAreaCache(); ?></textarea>
+        <textarea form='word_count' name='textarea' rows=5><?php if(isset($textarea_cache)) echo $textarea_cache; ?></textarea>
     </fieldset>
 
     <br><br>
 
     <fieldset>
-        <input type='checkbox' name='countSpace'>
+        <input type='checkbox' name='countSpace' <?php if(isset($countSpace_cache) && $countSpace_cache == True) echo "checked"; ?>>
         <label>Count space character?</label>
     </fieldset>
 
@@ -38,8 +36,8 @@ require('logic.php');
     <fieldset>
         <label>Count by character or word</label>
         <select name='wordOrChar' form='word_count'>
-            <option value='character'>Character</option>
-            <option value='word'>Word</option>
+            <option value='character' <?php if(isset($wordOrChar_cache) && $wordOrChar_cache == 'character') echo "selected"; ?>>Character</option>
+            <option value='word'      <?php if(isset($wordOrChar_cache) && $wordOrChar_cache == 'word'     ) echo "selected"; ?>>Word</option>
         </select>
     </fieldset>
 
@@ -48,7 +46,7 @@ require('logic.php');
     <fieldset>
         <label>Result</label>
         <br>
-        <output><?php echo $result; ?></output>
+        <output><?php if(isset($countResult_cache)) echo $countResult_cache; ?></output>
     </fieldset>
 
     <br><br>
@@ -59,6 +57,3 @@ require('logic.php');
 </body>
 </html>
 
-<?php
-    session_unset();
-?>

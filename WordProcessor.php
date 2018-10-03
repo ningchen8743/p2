@@ -15,15 +15,20 @@ class WordProcessor {
     private $wordCount  = 0;
 
     // method
-    function __construct($array) {
-        $this->text = $array["textarea"];
-        $this->countSpace = isset($array["countSpace"]);
-        $this->wordOrChar = $array["wordOrChar"];
+    function __construct(array $array) {
+		if(!empty($array)) {
+			$this->text = $array["textarea"];
+			$this->countSpace = isset($array["countSpace"]);
+			$this->wordOrChar = $array["wordOrChar"];
+		}
     }
 
     public function CountTotal(){
         $countResult = 0;
 
+		// handle the case where the textarea is empty
+		// this will never happen because the Form class prevents this happening
+		// but it is always a good practice to do so
         if(empty($this->text)) {
             return 0;
         }
@@ -57,3 +62,4 @@ class WordProcessor {
         return $countResult;
     }
 }
+
