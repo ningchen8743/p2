@@ -15,16 +15,19 @@ $arg = ['textarea' => 'required'];
 $errors = $form->validate($arg);
 
 $countResult = 0;
-if(!$form->hasErrors) {
-	$countResult = $wordProcessor->CountTotal();
+if ($form->hasErrors) {
+    $errmsg = implode(';', $errors);
+    $countResult = $errmsg;
+} else {
+    $countResult = $wordProcessor->CountTotal();
 }
 
 $_SESSION['result_cache'] = [
-	'textarea_cache'   => $wordProcessor->text,
-	'countSpace_cache' => $wordProcessor->countSpace,
-	'wordOrChar_cache' => $wordProcessor->wordOrChar,
-	'countResult_cache'=> $countResult,
-	'errors_cache'     => $errors,
+    'textarea_cache' => $wordProcessor->text,
+    'countSpace_cache' => $wordProcessor->countSpace,
+    'wordOrChar_cache' => $wordProcessor->wordOrChar,
+    'countResult_cache' => $countResult,
+    'errors_cache' => $errors,
 ];
 
 header('Location: index.php');

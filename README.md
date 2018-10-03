@@ -1,10 +1,9 @@
 # Project 2
 + By: Ning Chen
-+ Production URL: <http://p2.ningchenbunny.com>
++ [Production URL] (http://p2.ningchenbunny.com)
 
 ## Outside resources
-+ 
-+ 
+N/A
 
 ## 3 Unique inputs
 1. Text input a sentence or a paragraph
@@ -12,12 +11,12 @@
 1. Dropdown option to indicate whether to count character or word
 
 ## Class
-*List the name of the class you're using, e.g. `Form.php`, `Password.php`, etc.*
-+ count.php
++ Form.php
++ WordProcessor.php
 
 ## Code style divergences
-*list any divergences from PSR-1/PSR-2 and course guidelines on code style*
+N/A
 
 ## Notes for instructor
-*any notes for me to refer to while grading; if none, omit this section*
-
++ For the line break situation, since JavaScript event listener is prohibited for the purpose of the course, I left a warning note besides the text box.
++ Thanks for the review!
