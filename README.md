@@ -1,6 +1,6 @@
 # Project 2
 + By: Ning Chen
-+ [Production URL] (http://p2.ningchenbunny.com)
++ Production URL: [link](http://p2.ningchenbunny.com)
 
 ## Outside resources
 N/A
