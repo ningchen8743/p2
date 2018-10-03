@@ -30,14 +30,37 @@ require 'logic.php';
 
 
         <input type='checkbox'
-               name='countSpace' <?php if (isset($countSpace_cache) && $countSpace_cache == true) echo "checked"; ?>>
+               name='countSpace'
+            <?php
+            if (isset($countSpace_cache) && $countSpace_cache == true) {
+                echo "checked";
+            } else {
+                echo "";
+            }
+            ?>>
         <label>Count space character</label>
         <br><br>
 
         <label>Count by character or word </label>
         <select name='wordOrChar' form='word_count'>
-            <option value='character' <?php if (isset($wordOrChar_cache) && $wordOrChar_cache == 'character') echo "selected"; ?>>Character</option>
-            <option value='word' <?php if (isset($wordOrChar_cache) && $wordOrChar_cache == 'word') echo "selected"; ?>>Word</option>
+            <option value='character'
+                <?php
+                if (isset($wordOrChar_cache) && $wordOrChar_cache == 'character') {
+                    echo "selected";
+                } else {
+                    echo "";
+                }
+                ?>>Character
+            </option>
+            <option value='word'
+                <?php
+                if (isset($wordOrChar_cache) && $wordOrChar_cache == 'word') {
+                    echo "selected";
+                } else {
+                    echo "";
+                }
+                ?>>Word
+            </option>
         </select>
         <br><br><br>
 

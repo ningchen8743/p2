@@ -39,7 +39,12 @@ class WordProcessor
         }
 
         $wordArray = explode(" ", $this->text);
-        $this->wordCount = count($wordArray);
+        $this->wordCount = 0;
+        foreach ($wordArray as $word) {
+            if ($word != '') {
+                ++$this->wordCount;
+            }
+        }
 
         // get result
         if ($this->countSpace) {
